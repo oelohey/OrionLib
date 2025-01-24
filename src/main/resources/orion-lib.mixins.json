@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "package": "dev.oelohey.orion.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CactusBlockMixin",
+    "PlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "BackgroundRendererMixin",
+    "CameraMixin",
+    "CrossbowPosingMixin",
+    "HeldItemFeatureRendererMixin",
+    "HeldItemRendererMixin",
+    "InGameHudMixin",
+    "ItemRendererAcessor",
+    "ItemRendererMixin",
+    "ModelLoaderMixin",
+    "TwoHandGrip",
+    "TwoHandGripArmPose",
+    "WorldRendererMixin"
+  ]
+}
