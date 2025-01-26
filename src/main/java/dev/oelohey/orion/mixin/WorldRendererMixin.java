@@ -3,10 +3,7 @@ package dev.oelohey.orion.mixin;
 import dev.oelohey.orion.accesor.CustomSubmersionTypeAccesor;
 import dev.oelohey.orion.data_types.CustomSubmersionType;
 import dev.oelohey.orion.handler.SubmersionTypeDataHandler;
-import net.minecraft.client.render.Camera;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.render.WorldRenderer;
-import org.joml.Matrix4f;
+import net.minecraft.client.render.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class WorldRendererMixin {
 
 	@Inject(at = @At("HEAD"), method = "renderSky", cancellable = true)
-	private void orion$fog_sky(Matrix4f matrix4f, Matrix4f projectionMatrix, float tickDelta, Camera camera, boolean thickFog, Runnable fogCallback, CallbackInfo ci) {
+	private void orion$fog_sky(FrameGraphBuilder frameGraphBuilder, Camera camera, float tickDelta, Fog fog, CallbackInfo ci) {
 		if (camera instanceof CustomSubmersionTypeAccesor customSubmersionTypeAccesor){
 			String customSubmersion = customSubmersionTypeAccesor.orion$customSubmersionType();
 			for (CustomSubmersionType submersionType : SubmersionTypeDataHandler.customSubmersionTypes){

@@ -1,10 +1,7 @@
 package dev.oelohey.orion.util.screenshake;
 
-import dev.oelohey.orion.OrionLib;
 import dev.oelohey.orion.internal_util.ScreenshakeInstance;
 import net.minecraft.util.math.Vec3d;
-
-import java.util.Date;
 
 public class GlobalScreenshakeInstance extends ScreenshakeInstance {
 
@@ -20,7 +17,6 @@ public class GlobalScreenshakeInstance extends ScreenshakeInstance {
     public static GlobalScreenshakeInstance createInstance(int duration, float timeMaxPerShake, float intensityX, float intensityY, boolean diminishIntensity){
         GlobalScreenshakeInstance instance = new GlobalScreenshakeInstance();
         instance.duration = duration;
-        OrionLib.LOGGER.info(String.valueOf(instance.duration));
         instance.maxDuration = duration;
         instance.timeMaxPerShake = timeMaxPerShake;
         instance.intensityX = intensityX;

@@ -11,16 +11,12 @@
   },
   "client": [
     "BackgroundRendererMixin",
+    "BipedEntityRenderStateMixin",
     "CameraMixin",
-    "CrossbowPosingMixin",
-    "HeldItemFeatureRendererMixin",
     "HeldItemRendererMixin",
     "InGameHudMixin",
-    "ItemRendererAcessor",
-    "ItemRendererMixin",
-    "ModelLoaderMixin",
     "TwoHandGrip",
-    "TwoHandGripArmPose",
+    "TwoHandGripPoseFix",
     "WorldRendererMixin"
   ]
 }

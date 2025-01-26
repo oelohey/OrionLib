@@ -10,10 +10,15 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
 public class OrionItems {
-    public static final Item EARTHQUAKE_STICK = register(new EarthquakeStick(new Item.Settings()), Identifier.of(OrionLib.MOD_ID, "earthquake_stick"));
+    private static final RegistryKey<Item> EARTHQUAKE_STICK_KEY = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(OrionLib.MOD_ID, "earthquake_stick"));
+    public static final Item EARTHQUAKE_STICK = register(new EarthquakeStick(new Item.Settings().registryKey(EARTHQUAKE_STICK_KEY)), EARTHQUAKE_STICK_KEY.getValue());
 
     public static Item register(Item item, Identifier identifier) {
+        // Register the item.
+
+        // Return the registered item!
         return Registry.register(Registries.ITEM, identifier, item);
     }
+
     public static void registerItems(){}
 }

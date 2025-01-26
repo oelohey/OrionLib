@@ -1,35 +1,31 @@
 package dev.oelohey.orion.mixin;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import dev.oelohey.orion.accesor.CustomSubmersionTypeAccesor;
 import dev.oelohey.orion.data_types.CustomSubmersionType;
 import dev.oelohey.orion.handler.SubmersionTypeDataHandler;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
-import net.minecraft.client.world.ClientWorld;
+import net.minecraft.client.render.Fog;
+import net.minecraft.client.render.FogShape;
 import net.minecraft.entity.Entity;
+import org.joml.Vector4f;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Objects;
 
 @Mixin(BackgroundRenderer.class)
 public abstract class BackgroundRendererMixin {
 
-	@Shadow private static float red;
+	@Inject(at = @At("RETURN"), method = "applyFog", cancellable = true)
+	private static void orion$fog(Camera camera, BackgroundRenderer.FogType fogType, Vector4f color, float viewDistance, boolean thickenFog, float tickDelta, CallbackInfoReturnable<Fog> cir) {
 
-	@Shadow private static float green;
-
-	@Shadow private static float blue;
-
-	@Shadow private static long lastWaterFogColorUpdateTime;
-
-	@Inject(at = @At("RETURN"), method = "applyFog")
-	private static void orion$fog(Camera camera, BackgroundRenderer.FogType fogType, float viewDistance, boolean thickFog, float tickDelta, CallbackInfo ci) {
+		float fogStart;
+		float fogEnd;
+		FogShape fogShape = FogShape.CYLINDER;
 
 		Entity entity = camera.getFocusedEntity();
 
@@ -39,31 +35,17 @@ public abstract class BackgroundRendererMixin {
 				String currentSubmersionType = customSubmersionType.getSubmersionTypeName();
 				if (Objects.equals(currentSubmersionType, submersionType)){
 					if (entity.isSpectator()){
-						RenderSystem.setShaderFogStart(getValueOfCurrent(viewDistance, customSubmersionType, true, "fogStart"));
-						RenderSystem.setShaderFogEnd(getValueOfCurrent(viewDistance, customSubmersionType, true, "fogEnd"));
+						fogStart = getValueOfCurrent(viewDistance, customSubmersionType, true, "fogStart");
+						fogEnd = getValueOfCurrent(viewDistance, customSubmersionType, true, "fogEnd");
 					} else {
-						RenderSystem.setShaderFogStart(getValueOfCurrent(viewDistance, customSubmersionType, false, "fogStart"));
-						RenderSystem.setShaderFogEnd(getValueOfCurrent(viewDistance, customSubmersionType, false, "fogEnd"));
+						fogStart = getValueOfCurrent(viewDistance, customSubmersionType, false, "fogStart");
+						fogEnd = getValueOfCurrent(viewDistance, customSubmersionType, false, "fogEnd");
 					}
-				}
-			}
-		}
+					color.x = customSubmersionType.getRedValue();
+					color.y = customSubmersionType.getGreenValue();
+					color.z = customSubmersionType.getBlueValue();
 
-	}
-
-	@Inject(at = @At("RETURN"), method = "render")
-	private static void orion$fog_color(Camera camera, float tickDelta, ClientWorld world, int viewDistance, float skyDarkness, CallbackInfo ci) {
-
-		if (camera instanceof CustomSubmersionTypeAccesor customSubmersionTypeAccesor) {
-			String submersionType = customSubmersionTypeAccesor.orion$customSubmersionType();
-			for (CustomSubmersionType customSubmersionType : SubmersionTypeDataHandler.customSubmersionTypes) {
-				String currentSubmersionType = customSubmersionType.getSubmersionTypeName();
-				if (Objects.equals(currentSubmersionType, submersionType)){
-					red = customSubmersionType.getRedValue();
-					green = customSubmersionType.getGreenValue();
-					blue = customSubmersionType.getBlueValue();
-					lastWaterFogColorUpdateTime = -1L;
-					RenderSystem.clearColor(red, green, blue, 0.0F);
+					cir.setReturnValue(new Fog(fogStart, fogEnd, fogShape, color.x, color.y, color.z, color.w));
 				}
 			}
 		}
