@@ -22,60 +22,18 @@ import java.util.List;
 
 import static org.joml.Math.lerp;
 
-@Mixin(InGameHud.class)
-public abstract class InGameHudMixin {
+@Mixin(DebugHud.class)
+public abstract class DebugHudFixMixin {
 
 	@Shadow @Final private MinecraftClient client;
 
-	@Shadow @Final private DebugHud debugHud;
-
 	@Inject(at = @At("HEAD"), method = "render")
-	private void orion$inject_context_change(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci){
-        orion$change_context(context);
-    }
-
-	@Inject(at = @At("HEAD"), method = "renderMiscOverlays")
-	private void orion$inject_context_changeMisc(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci){
+	private void orion$inject_context_changeDEBUG(DrawContext context, CallbackInfo ci){
 		orion$change_context_matrix(context, -1.0f);
 	}
 
-	@Inject(at = @At("RETURN"), method = "renderMiscOverlays")
-	private void orion$inject_context_changeMisc_RET(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci){
-		orion$change_context_matrix(context, 1.0f);
-	}
-
-	@Inject(at = @At("HEAD"), method = "renderCrosshair")
-	private void orion$inject_context_changeCrosshair(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci){
-		GameOptions gameOptions = this.client.options;
-		if (this.debugHud.shouldShowDebugHud()) {
-            assert this.client.player != null;
-            if (!this.client.player.hasReducedDebugInfo() && !gameOptions.getReducedDebugInfo().getValue()) {
-                orion$change_context_matrix(context, -1.0f);
-            }
-        }
-	}
-
-	@Inject(at = @At("RETURN"), method = "renderCrosshair")
-	private void orion$inject_context_changeCrosshair_RET(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci){
-		GameOptions gameOptions = this.client.options;
-		if (this.debugHud.shouldShowDebugHud()) {
-			assert this.client.player != null;
-			if (!this.client.player.hasReducedDebugInfo() && !gameOptions.getReducedDebugInfo().getValue()) {
-				orion$change_context_matrix(context, 1.0f);
-			}
-		}
-	}
-
-
 	@Inject(at = @At("RETURN"), method = "render")
-	private void orion$inject_context_change_fix(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci){
-		context.getMatrices().pop();
-	}
-
-
-	@Unique
-	private void orion$change_context(DrawContext context) {
-		context.getMatrices().push();
+	private void orion$inject_context_changeDEBUG_RET(DrawContext context, CallbackInfo ci){
 		orion$change_context_matrix(context, 1.0f);
 	}
 
