@@ -3,8 +3,6 @@ package dev.oelohey.orion.util.screenshake;
 import dev.oelohey.orion.internal_util.ScreenshakeInstance;
 import net.minecraft.util.math.Vec3d;
 
-import java.util.Date;
-
 public class PositionedScreenshakeInstance extends ScreenshakeInstance {
 
     /**
@@ -15,15 +13,15 @@ public class PositionedScreenshakeInstance extends ScreenshakeInstance {
     public Vec3d origin;
     public float maxDistance;
 
-    public static PositionedScreenshakeInstance createInstance(int duration, float timeMaxPerShake, float intensity, boolean diminishIntensity, Vec3d origin, float maxDistance){
-        return createInstance(duration, timeMaxPerShake, intensity, intensity, diminishIntensity, origin, maxDistance);
+    public static PositionedScreenshakeInstance createInstance(int duration, float frequency, float intensity, boolean diminishIntensity, Vec3d origin, float maxDistance){
+        return createInstance(duration, frequency, intensity, intensity, diminishIntensity, origin, maxDistance);
     }
 
-    public static PositionedScreenshakeInstance createInstance(int duration, float timeMaxPerShake, float intensityX, float intensityY, boolean diminishIntensity, Vec3d origin, float maxDistance){
+    public static PositionedScreenshakeInstance createInstance(int duration, float frequency, float intensityX, float intensityY, boolean diminishIntensity, Vec3d origin, float maxDistance){
         PositionedScreenshakeInstance instance = new PositionedScreenshakeInstance();
         instance.duration = duration;
         instance.maxDuration = duration;
-        instance.timeMaxPerShake = timeMaxPerShake;
+        instance.timeMaxPerShake = frequency;
         instance.intensityX = intensityX;
         instance.intensityY = intensityY;
         instance.diminishIntensity = diminishIntensity;

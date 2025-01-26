@@ -1,0 +1,34 @@
+package dev.oelohey.orion.command;
+
+import com.mojang.brigadier.arguments.BoolArgumentType;
+import com.mojang.brigadier.arguments.FloatArgumentType;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
+import dev.oelohey.orion.command.screenshake_util.ScreenshakeCommandUtil;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.command.argument.Vec3ArgumentType;
+import net.minecraft.server.command.CommandManager;
+
+public class CommandRegistry {
+
+    public static void commandRegistry(){
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(CommandManager.literal("screenshake")
+                .requires(source -> source.hasPermissionLevel(1))
+                        .then(CommandManager.literal("reset")
+                                .then(CommandManager.argument("targets", EntityArgumentType.players())
+                                        .executes(ScreenshakeCommandUtil::screenshakeCommandRESET)))
+                        .then(CommandManager.literal("add")
+                                .then(CommandManager.argument("targets", EntityArgumentType.players())
+                                        .then(CommandManager.argument("duration", IntegerArgumentType.integer(1, Integer.MAX_VALUE))
+                                                .then(CommandManager.argument("frequency", FloatArgumentType.floatArg(0.1f, Float.MAX_VALUE))
+                                                        .then(CommandManager.argument("intensity_x", FloatArgumentType.floatArg(0.1f, 100))
+                                                                .then(CommandManager.argument("intensity_y", FloatArgumentType.floatArg(0.1f, 100))
+                                                                        .then(CommandManager.argument("diminish_intensity", BoolArgumentType.bool())
+                                                                                .executes(ScreenshakeCommandUtil::screenshakeCommandADD)
+                                                                                .then(CommandManager.argument("origin", Vec3ArgumentType.vec3())
+                                                                                        .then(CommandManager.argument("max_distance", FloatArgumentType.floatArg(0.1f, Float.MAX_VALUE))
+                                                                                                .executes(ScreenshakeCommandUtil::screenshakeCommandADD_POSITIONED))
+                                                                                )))))))
+                        )));
+    }
+}

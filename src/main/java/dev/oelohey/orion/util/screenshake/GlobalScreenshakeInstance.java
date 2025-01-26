@@ -10,15 +10,15 @@ public class GlobalScreenshakeInstance extends ScreenshakeInstance {
      * to the players that have been applied with it
      */
 
-    public static GlobalScreenshakeInstance createInstance(int duration, float timeMaxPerShake, float intensity, boolean diminishIntensity){
-        return createInstance(duration, timeMaxPerShake, intensity, intensity, diminishIntensity);
+    public static GlobalScreenshakeInstance createInstance(int duration, float frequency, float intensity, boolean diminishIntensity){
+        return createInstance(duration, frequency, intensity, intensity, diminishIntensity);
     }
 
-    public static GlobalScreenshakeInstance createInstance(int duration, float timeMaxPerShake, float intensityX, float intensityY, boolean diminishIntensity){
+    public static GlobalScreenshakeInstance createInstance(int duration, float frequency, float intensityX, float intensityY, boolean diminishIntensity){
         GlobalScreenshakeInstance instance = new GlobalScreenshakeInstance();
         instance.duration = duration;
         instance.maxDuration = duration;
-        instance.timeMaxPerShake = timeMaxPerShake;
+        instance.timeMaxPerShake = frequency;
         instance.intensityX = intensityX;
         instance.intensityY = intensityY;
         instance.diminishIntensity = diminishIntensity;
