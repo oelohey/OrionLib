@@ -1,5 +1,6 @@
 package dev.oelohey.orion;
 
+import dev.oelohey.orion.command.CommandRegistry;
 import dev.oelohey.orion.listeners.DoubleHandedCancel;
 import dev.oelohey.orion.register.OrionRegister;
 import net.fabricmc.api.ModInitializer;
@@ -17,5 +18,7 @@ public class OrionLib implements ModInitializer {
 
 		//CALLBACKS
 		DoubleHandedCancel.cancelCallbacks();
+
+		CommandRegistry.commandRegistry();
 	}
 }
