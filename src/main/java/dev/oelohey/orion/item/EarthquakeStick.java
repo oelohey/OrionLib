@@ -17,7 +17,7 @@ public class EarthquakeStick extends Item {
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
 
         if (user instanceof ScreenshakeNBTAcessor nbtAcessor){
-            nbtAcessor.orion$addInstance(GlobalScreenshakeInstance.createInstance(200, 3, 6, true));
+            nbtAcessor.orion$addInstance(GlobalScreenshakeInstance.createInstance(200, 1.5f, 6, true));
         }
 
         return ActionResult.SUCCESS;

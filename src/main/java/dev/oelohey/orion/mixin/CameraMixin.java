@@ -6,6 +6,7 @@ import dev.oelohey.orion.data_types.CustomSubmersionType;
 import dev.oelohey.orion.handler.ScreenshakeHandler;
 import dev.oelohey.orion.handler.SubmersionTypeDataHandler;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
@@ -142,7 +143,7 @@ public abstract class CameraMixin implements CustomSubmersionTypeAccesor, Camera
 
 	@Inject(at = @At("RETURN"), method = "update")
 	private void orion$tick_addition(BlockView area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo ci) {
-		this.ticker = this.ticker+tickDelta;
+		this.ticker = this.ticker+MinecraftClient.getInstance().getRenderTickCounter().getLastDuration();
 		Camera camera = (Camera) (Object) this;
 		ScreenshakeHandler.cameraTick(camera);
 	}
