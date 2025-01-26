@@ -30,6 +30,17 @@ public abstract class InGameHudMixin {
         orion$change_context(context);
     }
 
+	@Inject(at = @At("HEAD"), method = "renderMiscOverlays")
+	private void orion$inject_context_changeMisc(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci){
+		orion$change_context_matrix(context, -1.0f);
+	}
+
+	@Inject(at = @At("RETURN"), method = "renderMiscOverlays")
+	private void orion$inject_context_changeMisc_RET(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci){
+		orion$change_context_matrix(context, 1.0f);
+	}
+
+
 	@Inject(at = @At("RETURN"), method = "render")
 	private void orion$inject_context_change_fix(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci){
 		context.getMatrices().pop();
@@ -39,6 +50,11 @@ public abstract class InGameHudMixin {
 	@Unique
 	private void orion$change_context(DrawContext context) {
 		context.getMatrices().push();
+		orion$change_context_matrix(context, 1.0f);
+	}
+
+	@Unique
+	private void orion$change_context_matrix(DrawContext context, float multiplier){
 		if (this.client.gameRenderer.getCamera() instanceof CameraSetCameraAcessor cameraSet) {
 			if (this.client.gameRenderer.getCamera().getFocusedEntity() instanceof ScreenshakeNBTAcessor nbtAcessor) {
 				List<ScreenshakeInstance> screenshakeInstances = nbtAcessor.orion$getInstances();
@@ -46,7 +62,7 @@ public abstract class InGameHudMixin {
 					float offsetSIDE = lerp(cameraSet.orion$getOffsetYawOLD(), cameraSet.orion$getOffsetYaw(), ScreenshakeHandler.getLerp(cameraSet));
 					float offsetHEIGHT = lerp(cameraSet.orion$getOffsetPitchOLD(), cameraSet.orion$getOffsetPitch(), ScreenshakeHandler.getLerp(cameraSet));
 
-					context.getMatrices().translate(offsetSIDE*10, offsetHEIGHT*10, 0);
+					context.getMatrices().translate(offsetSIDE*10*multiplier, offsetHEIGHT*-10*multiplier, 0);
 				}
 			}
 		}
