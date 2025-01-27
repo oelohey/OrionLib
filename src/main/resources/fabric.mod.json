@@ -8,8 +8,8 @@
 		"oelohey"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/orionlib",
+		"sources": "https://github.com/oelohey/OrionLib/tree/0.5.1-Pre"
 	},
 	"license": "GNU GPLv3",
 	"icon": "assets/orion/icon.png",
@@ -30,7 +30,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.16.10",
-		"minecraft": "~1.21.1",
+		"minecraft": "~1.21.4",
 		"java": ">=21",
 		"fabric-api": "*"
 	},
