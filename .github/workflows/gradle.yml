@@ -56,7 +56,7 @@ jobs:
 
         cd ..
 
-        mkdir ${minecraft_version}/${mod_version} -p
+        mkdir repo-releases/${minecraft_version}/${mod_version} -p
 
         ls
 
