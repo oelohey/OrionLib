@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>dev.oelohey</groupId>
   <artifactId>orion-lib</artifactId>
-  <version>0.5.1</version>
+  <version>0.5.1+1.21.4</version>
   <name>Orion Library</name>
   <description>silly</description>
   <url>https://github.com/oelohey/OrionLib</url>
