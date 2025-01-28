@@ -61,8 +61,8 @@ jobs:
 
         cd repo-releases
 
-        git config user.name "Github Actions"
-        git config user.email "actions@github.com"
+        git config user.name "oelohey"
+        git config user.email "oelohey@gmail.com"
 
         git add .
         git commit -m "test"
