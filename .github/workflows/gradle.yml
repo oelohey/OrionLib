@@ -15,11 +15,10 @@ on:
 
 jobs:
   build:
-  permissions: write-all
 
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write-all
 
     steps:
     - uses: actions/checkout@v4
