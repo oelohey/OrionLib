@@ -56,9 +56,9 @@ jobs:
 
         cd ..
 
-        mkdir repo-releases/oelohey/orionlib/orion-lib/${minecraft_version}-${mod_version} -p
+        mkdir repo-releases/oelohey/orionlib/orion-lib/${mod_version}+${minecraft_version} -p
 
-        cp repo-master/build/libs/${mod_name}-${mod_version_package}.jar repo-releases/oelohey/orionlib/orion-lib/${mod_version}-${minecraft_version}/${mod_name}-${mod_version_package}.jar
+        cp repo-master/build/libs/${mod_name}-${mod_version_package}.jar repo-releases/oelohey/orionlib/orion-lib/${mod_version}+${minecraft_version}/${mod_name}-${mod_version_package}.jar
 
         cd repo-releases
 
