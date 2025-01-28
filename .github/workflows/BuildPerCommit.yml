@@ -41,7 +41,7 @@ jobs:
         export MINECRAFT_VERSION=$(grep '^minecraft_version=' gradle.properties | cut -d'=' -f2)
         echo "MOD_VERSION_PACKAGE=$MOD_VERSION_PACKAGE" >> $GITHUB_ENV
         echo "MOD_NAME=$MOD_NAME" >> $GITHUB_ENV
-        echo "MINECRAFT_VERSION=$MINECRAFT_VERSION" >> GITHUB_ENV
+        echo "MINECRAFT_VERSION=$MINECRAFT_VERSION" >> $GITHUB_ENV
 
 
     - name: Extract Commit Message
