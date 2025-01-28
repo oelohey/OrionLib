@@ -58,6 +58,8 @@ jobs:
 
         mkdir ${minecraft_version}/${mod_version} -p
 
+        ls
+
         cp repo-master/build/libs/${mod_name}-${mod_version_package}.jar repo-releases/${minecraft_version}/${mod_version}/${mod_name}-${mod_version_package}.jar
 
         cd repo-releases
