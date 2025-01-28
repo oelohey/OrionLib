@@ -47,6 +47,8 @@ jobs:
       run: |
 
         cd repo-master
+
+        bash ./gradlew build
         
         mod_version_package=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2)
         mod_name=$(grep '^archives_base_name=' gradle.properties | cut -d'=' -f2)
