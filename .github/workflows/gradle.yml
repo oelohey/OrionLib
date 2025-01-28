@@ -52,7 +52,7 @@ jobs:
         mod_version_package=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2)
         mod_name=$(grep '^archives_base_name=' gradle.properties | cut -d'=' -f2)
         minecraft_version=$(grep '^minecraft_version=' gradle.properties | cut -d'=' -f2)
-        mod_version=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2 | cut -d'-' -f1)
+        mod_version=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2 | cut -d'+' -f1)
 
         cd ..
 
