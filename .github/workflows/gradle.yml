@@ -68,7 +68,7 @@ jobs:
         git config user.email "actions@github.com"
 
         git add .
-        git commit -m "test"
+        git commit -m "Upload for version ${mod_version} for minecraft ${minecraft_version}"
 
         git push origin releases
 
