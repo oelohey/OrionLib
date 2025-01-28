@@ -20,6 +20,6 @@ public class OrionLib implements ModInitializer {
 		DoubleHandedCancel.cancelCallbacks();
 
 		CommandRegistry.commandRegistry();
-		LOGGER.info("a");
+		LOGGER.info("b");
 	}
 }
