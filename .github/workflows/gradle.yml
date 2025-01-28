@@ -18,7 +18,7 @@ jobs:
 
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
 
     steps:
     - uses: actions/checkout@v4
@@ -41,7 +41,7 @@ jobs:
         minecraft_version=$(grep '^minecraft_version=' gradle.properties | cut -d'=' -f2)
         mod_version=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2 | cut -d'-' -f1)
         
-        ./gradlew build
+        bash ./gradlew build
 
         git clone hhpts://user:$GITHUB_TOKEN@github.com/oelohey/modresources
 
