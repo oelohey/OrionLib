@@ -64,6 +64,7 @@ jobs:
         git config user.name "Github Actions"
         git config user.email "actions@github.com"
 
+        git add .
         git commit -m "test"
 
         git push origin releases
