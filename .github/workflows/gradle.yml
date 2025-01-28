@@ -21,7 +21,17 @@ jobs:
       contents: read
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Pull master branch
+      uses: actions/checkout@v4
+      with:
+        ref: master
+        path: repo-master
+    - name: Pull releases branch
+      uses: actions/checkout@v4
+      with:
+        ref: releases
+        path: repo-releases
+        
     - name: Set up JDK 21
       uses: actions/setup-java@v4
       with:
@@ -36,24 +46,26 @@ jobs:
     - name: Build and Publish
       run: |
 
+        cd repo-master
+        
         mod_version_package=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2)
         mod_name=$(grep '^archives_base_name=' gradle.properties | cut -d'=' -f2)
         minecraft_version=$(grep '^minecraft_version=' gradle.properties | cut -d'=' -f2)
         mod_version=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2 | cut -d'-' -f1)
-        
-        bash ./gradlew build
 
-        git clone httpss://user:$GITHUB_TOKEN@github.com/oelohey/modresources
+        cd ..
 
-        cd modresources
-        git config user.name "oelohey"
-        git config user.email "oelohey@gmail.com"
+        cp repo-master/build/libs/${mod_name}-${mod_version_package} repo-releases/${mod_name}-${mod_version_package}
 
-        git add new-file.txt
+        cd repo-releases
+
+        git config user.name "Github Actions"
+        git config user.email "actions@github.com"
+
         git commit -m "test"
 
+        git push origin releases
 
-        git push origin main
         
     #   run: gradle build
 
