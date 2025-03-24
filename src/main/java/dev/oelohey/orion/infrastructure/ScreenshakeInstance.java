@@ -1,4 +1,4 @@
-package dev.oelohey.orion.internal_util;
+package dev.oelohey.orion.infrastructure;
 
 import dev.oelohey.orion.util.screenshake.GlobalScreenshakeInstance;
 import dev.oelohey.orion.util.screenshake.PositionedScreenshakeInstance;

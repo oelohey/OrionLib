@@ -1,7 +1,7 @@
-package dev.oelohey.orion.data_types;
+package dev.oelohey.orion.internal_util;
 
+import dev.oelohey.orion.infrastructure.ScreenshakeInstance;
 import dev.oelohey.orion.util.screenshake.GlobalScreenshakeInstance;
-import dev.oelohey.orion.internal_util.ScreenshakeInstance;
 import dev.oelohey.orion.util.screenshake.PositionedScreenshakeInstance;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.Vec3d;

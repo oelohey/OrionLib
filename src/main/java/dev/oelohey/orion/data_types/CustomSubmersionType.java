@@ -6,6 +6,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public interface CustomSubmersionType {
+    /**
+     * Extend this class for creating a custom submersion type
+     * then instantiate and add the new instance to the list
+     * customSubmersionTypes in
+     * @see dev.oelohey.orion.handler.SubmersionTypeDataHandler
+     */
     String getSubmersionTypeName();
 
     float getRedValue();

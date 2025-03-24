@@ -1,5 +1,6 @@
 package dev.oelohey.orion.infrastructure.wrapper_world.tick_scheduler;
 
+import dev.oelohey.orion.OrionLib;
 import it.unimi.dsi.fastutil.objects.ObjectOpenCustomHashSet;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.BlockPos;
@@ -13,7 +14,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class SpatialChunkTickScheduler<T> implements SerializableTickScheduler<T>, BasicTickScheduler<T> {
+public class ChunkspaceTickScheduler<T> implements SerializableTickScheduler<T>, BasicTickScheduler<T> {
 
     private final Queue<OrderedTick<T>> orderedTickQueue = new PriorityQueue<>(OrderedTick.TRIGGER_TICK_COMPARATOR);
 
@@ -23,11 +24,11 @@ public class SpatialChunkTickScheduler<T> implements SerializableTickScheduler<T
     private final Set<OrderedTick<?>> queuedTicks = new ObjectOpenCustomHashSet<>(OrderedTick.HASH_STRATEGY);
 
     @Nullable
-    private BiConsumer<SpatialChunkTickScheduler<T>, OrderedTick<T>> tickConsumer;
+    private BiConsumer<ChunkspaceTickScheduler<T>, OrderedTick<T>> tickConsumer;
 
-    public SpatialChunkTickScheduler(){}
+    public ChunkspaceTickScheduler(){}
 
-    public SpatialChunkTickScheduler(List<Tick<T>> ticks) {
+    public ChunkspaceTickScheduler(List<Tick<T>> ticks) {
         this.ticks = ticks;
 
         for (Tick<T> tick : ticks) {
@@ -35,7 +36,7 @@ public class SpatialChunkTickScheduler<T> implements SerializableTickScheduler<T
         }
     }
 
-    public void setTickConsumer(@Nullable BiConsumer<SpatialChunkTickScheduler<T>, OrderedTick<T>> tickConsumer) {
+    public void setTickConsumer(@Nullable BiConsumer<ChunkspaceTickScheduler<T>, OrderedTick<T>> tickConsumer) {
         this.tickConsumer = tickConsumer;
     }
 

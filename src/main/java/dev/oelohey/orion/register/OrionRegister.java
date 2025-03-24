@@ -12,5 +12,6 @@ public class OrionRegister {
         ScreenshakeHandler.registerHandler();
 
         OrionItems.registerItems();
+        OrionEntities.registerModEntities();
     }
 }

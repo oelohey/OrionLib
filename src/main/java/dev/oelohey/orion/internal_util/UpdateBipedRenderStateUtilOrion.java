@@ -1,4 +1,4 @@
-package dev.oelohey.orion.util;
+package dev.oelohey.orion.internal_util;
 
 import dev.oelohey.orion.accesor.BipedEntityRenderStateDoublehandedAcessor;
 import net.minecraft.client.item.ItemModelManager;

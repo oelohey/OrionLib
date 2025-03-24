@@ -3,7 +3,7 @@ package dev.oelohey.orion.mixin;
 import dev.oelohey.orion.accesor.CameraSetCameraAcessor;
 import dev.oelohey.orion.accesor.ScreenshakeNBTAcessor;
 import dev.oelohey.orion.handler.ScreenshakeHandler;
-import dev.oelohey.orion.internal_util.ScreenshakeInstance;
+import dev.oelohey.orion.infrastructure.ScreenshakeInstance;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;

@@ -1,6 +1,6 @@
 package dev.oelohey.orion.accesor;
 
-import dev.oelohey.orion.internal_util.ScreenshakeInstance;
+import dev.oelohey.orion.infrastructure.ScreenshakeInstance;
 
 import java.util.List;
 

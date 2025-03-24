@@ -1,8 +1,8 @@
 package dev.oelohey.orion.mixin;
 
 import dev.oelohey.orion.accesor.ScreenshakeNBTAcessor;
-import dev.oelohey.orion.data_types.NbtHelperOrion;
-import dev.oelohey.orion.internal_util.ScreenshakeInstance;
+import dev.oelohey.orion.internal_util.NbtHelperOrion;
+import dev.oelohey.orion.infrastructure.ScreenshakeInstance;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.data.DataTracker;

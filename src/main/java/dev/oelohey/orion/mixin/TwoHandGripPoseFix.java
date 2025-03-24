@@ -1,7 +1,7 @@
 package dev.oelohey.orion.mixin;
 
 import dev.oelohey.orion.accesor.BipedEntityRenderStateDoublehandedAcessor;
-import dev.oelohey.orion.util.CrossbowPosingOrion;
+import dev.oelohey.orion.internal_util.CrossbowPosingOrion;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.EntityModel;

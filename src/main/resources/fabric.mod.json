@@ -11,6 +11,7 @@
 		"homepage": "https://modrinth.com/mod/orionlib",
 		"sources": "https://github.com/oelohey/OrionLib/tree/0.5.1-Pre"
 	},
+	"accessWidener" : "orion.accesswidener",
 	"license": "GNU GPLv3",
 	"icon": "assets/orion/icon.png",
 	"environment": "*",
@@ -21,8 +22,8 @@
 		"client": [
 			"dev.oelohey.orion.OrionClient"
 		],
-		"fabric-datagen": [
-			"dev.oelohey.orion.OrionLibDataGenerator"
+		"server": [
+			"dev.oelohey.orion.OrionServer"
 		]
 	},
 	"mixins": [

@@ -2,7 +2,7 @@ package dev.oelohey.orion.handler;
 
 import dev.oelohey.orion.accesor.CameraSetCameraAcessor;
 import dev.oelohey.orion.accesor.ScreenshakeNBTAcessor;
-import dev.oelohey.orion.internal_util.ScreenshakeInstance;
+import dev.oelohey.orion.infrastructure.ScreenshakeInstance;
 import net.minecraft.client.render.Camera;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.random.Random;
@@ -17,7 +17,7 @@ public class ScreenshakeHandler {
     }
 
     public static void cameraTick(Camera camera){
-        PlayerEntity player = (PlayerEntity) camera.getFocusedEntity();
+        if (!(camera.getFocusedEntity() instanceof PlayerEntity player)) return;
 
         if (player instanceof ScreenshakeNBTAcessor nbtAcessor) {
             List<ScreenshakeInstance> screenshakeInstances = nbtAcessor.orion$getInstances();

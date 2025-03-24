@@ -1,7 +1,7 @@
 package dev.oelohey.orion.mixin;
 
 import dev.oelohey.orion.register.OrionItemComponents;
-import dev.oelohey.orion.util.UpdateBipedRenderStateUtilOrion;
+import dev.oelohey.orion.internal_util.UpdateBipedRenderStateUtilOrion;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.*;
 import net.minecraft.client.render.entity.model.BipedEntityModel;

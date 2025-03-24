@@ -1,6 +1,6 @@
 package dev.oelohey.orion.util.screenshake;
 
-import dev.oelohey.orion.internal_util.ScreenshakeInstance;
+import dev.oelohey.orion.infrastructure.ScreenshakeInstance;
 import net.minecraft.util.math.Vec3d;
 
 public class PositionedScreenshakeInstance extends ScreenshakeInstance {

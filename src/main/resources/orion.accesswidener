@@ -1,0 +1,4 @@
+accessWidener	v2	named
+
+accessible	field	net/minecraft/client/render/block/entity/BlockEntityRendererFactories	FACTORIES	Ljava/util/Map;
+mutable  field   net/minecraft/world/World   random  Lnet/minecraft/util/math/random/Random;

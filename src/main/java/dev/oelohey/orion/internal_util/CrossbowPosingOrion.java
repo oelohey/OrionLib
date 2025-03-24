@@ -1,4 +1,4 @@
-package dev.oelohey.orion.util;
+package dev.oelohey.orion.internal_util;
 
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.util.math.MathHelper;
