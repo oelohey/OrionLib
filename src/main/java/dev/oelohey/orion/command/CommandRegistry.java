@@ -3,10 +3,8 @@ package dev.oelohey.orion.command;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
-import dev.oelohey.orion.command.screenshake_util.CargoTest;
 import dev.oelohey.orion.command.screenshake_util.ScreenshakeCommandUtil;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.minecraft.command.argument.BlockPosArgumentType;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.command.argument.Vec3ArgumentType;
 import net.minecraft.server.command.CommandManager;
@@ -14,14 +12,6 @@ import net.minecraft.server.command.CommandManager;
 public class CommandRegistry {
 
     public static void commandRegistry(){
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(CommandManager.literal("cargo_test")
-                .requires(source -> source.hasPermissionLevel(1))
-                .then(CommandManager.literal("add")
-                        .then(CommandManager.argument("pos1", BlockPosArgumentType.blockPos())
-                                .then(CommandManager.argument("pos2", BlockPosArgumentType.blockPos())
-                                        .executes(CargoTest::cargoTest))))))
-
-        ;
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(CommandManager.literal("screenshake")
                 .requires(source -> source.hasPermissionLevel(1))
                         .then(CommandManager.literal("reset")

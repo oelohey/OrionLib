@@ -7,10 +7,8 @@ public class OrionRegister {
 
     public static void registerModData(){
         OrionItemComponents.registerItemComponents();
-
         SubmersionTypeDataHandler.registerHandler();
         ScreenshakeHandler.registerHandler();
-
         OrionItems.registerItems();
         OrionEntities.registerModEntities();
     }
